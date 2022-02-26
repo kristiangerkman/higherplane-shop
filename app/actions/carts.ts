@@ -39,35 +39,79 @@ const _createCart = async (variant_id?: string, quantity?: number): Promise<Cart
 	return cart;
 }
 
-// this whole shabang should propably be done via some session token
 
-export const validateCart = async () => {
+const _addItemToCart = async (variantId: string, cartId: string, quantity?: number) => {
+	try {
+		await axios.post(`${_baseUrl}/carts/${cartId}/items`, { variant_id: variantId, quantity: quantity || 1});
+	} catch (e) {
+		console.log(e)
+	}
+}
+
+const _updateItemQuantity = async (variantId: string, cartId: string, quantity: number) => {
+	try {
+		await axios.put(`${_baseUrl}/carts/${cartId}/items/${variantId}`, {quantity: quantity});
+	} catch (e) {
+		console.log(e)
+	}
+}
+
+const _removeItemFromCart = async (variantId: string, cartId: string) => {
+	try {
+		await axios.delete(`${_baseUrl}/carts/${cartId}/items/${variantId}`);
+	} catch (e) {
+		console.log(e)
+	}
+}
+
+
+export const validateCartHandler = async (variantId?:string): Promise<{ cart:Cart, isNewCart: boolean}> => {
 	const cartId = window.localStorage.getItem('cart_id');
 	if (!cartId) {
 		const newCart = await _createCart('36b9b2cb-4f34-4139-80eb-ca91f9fafee0', 999)
 		window.localStorage.setItem('cart_id', newCart.id);
-		return newCart;
+		return { cart: newCart, isNewCart: true};
 	}
-	return _getCart(cartId);
+	return { cart: await _getCart(cartId), isNewCart: false };
 }
 
-export const addItemToCart = async (variantId: string) => {
-
+export const addItemToCartHandler = async (variantId: string) => {
+	try {
+		const { cart, isNewCart } = await validateCartHandler(variantId);
+		if (isNewCart) return;
+		_addItemToCart(variantId, cart.id);
+	} catch (e) {
+		console.log(e)
+	}
 }
 
-export const updateVariantQuantityInCart = async (variantId: string, newQuantity: number) => {
-
+export const updateItemQuantityInCartHandler = async (variantId: string, newQuantity: number) => {
+	try {
+		const { cart } = await validateCartHandler(variantId);
+		_updateItemQuantity(variantId, cart.id, newQuantity);
+	} catch (e) {
+		console.log(e)
+	}
 };
 
-export const deleteVariantFromCart = async (variantId: string) => {
-
+export const removeItemFromCartHandler = async (variantId: string) => {
+	try {
+		const { cart } = await validateCartHandler(variantId);
+		_removeItemFromCart(variantId, cart.id);
+	} catch (e) {
+		console.log(e)
+	}
 }
 
-export const changeVariantInCart = async (variantId: string, newVariantId: string) => {
+export const changeItemInCartHandler = async (variantId: string, newVariantId: string) => {
+	// not sure if this is needed..
 
+	// basically just remove the current one and add the new one .. use case would be to update the variant from cart page
 }
 
-export const emptyCurrentCart = async () => {
+export const emptyCurrentCartHandler = async () => {
+	
+	// not sure if needed .. would be nice for debugging purposes
 	return null;
 }
 
