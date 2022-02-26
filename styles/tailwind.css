@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 400;
+		src: url('/fonts/WorkSans-Regular.ttf') format('TrueType');
+	}
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 400;
+		font-style: italic;
+		src: url('/fonts/WorkSans-Regular.ttf') format('TrueType');
+	}
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 500;
+		src: url('/fonts/WorkSans-Medium.ttf') format('TrueType');
+	}
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 500;
+		font-style: italic;
+		src: url('/fonts/WorkSans-Medium.ttf') format('TrueType');
+	}
+		@font-face {
+		font-family: 'HP-regular';
+		font-weight: 600;
+		src: url('/fonts/WorkSans-SemiBold.ttf') format('TrueType');
+	}
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 600;
+		font-style: italic;
+		src: url('/fonts/WorkSans-SemiBold.ttf') format('TrueType');
+	}
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 700;
+		src: url('/fonts/WorkSans-Bold.ttf') format('TrueType');
+	}
+	@font-face {
+		font-family: 'HP-regular';
+		font-weight: 700;
+		font-style: italic;
+		src: url('/fonts/WorkSans-Bold.ttf') format('TrueType');
+	}
+}
