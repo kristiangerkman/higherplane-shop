@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Meta, Links, Scripts } from 'remix';
 import { ArrowRight } from './Icons';
 
 type Item = {
@@ -12,6 +13,9 @@ export interface Props {
   setter: any;
   initialValue: Item;
 }
+
+// TODO: onChange function
+// make dropped values absolute instead of block, so that once the dd is open it doens't displace elems
 
 const Dropdown = (props: Props) => {
   const { title, setter, values, initialValue } = props;
@@ -94,10 +98,10 @@ const Dropdown = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className='w-40'>
       <label className="text-pre font-bold">{title}</label>
       <div
-        className="text-pre w-full text-primary bg-transparent border-2 rounded-md  flex flex-col"
+        className="text-pre w-full text-primary bg-transparent border-2 rounded-md flex flex-col"
         onClick={() => DropdownOnClick(!open)}
         onMouseLeave={() => DropdownOnClick(false)}
       >
@@ -117,5 +121,22 @@ const Dropdown = (props: Props) => {
     </div>
   );
 };
+
+export function ErrorBoundary({ error }:any) {
+  console.error(error);
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body className="bg-red-500">
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 export default Dropdown;

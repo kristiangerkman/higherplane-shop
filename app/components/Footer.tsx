@@ -7,9 +7,9 @@ export default function Footer() {
 		<div className="bg-hg w-full flex flex-col pr-3 pl-3">
 			<div className="flex w-full justify-center">
 
-			<div className='w-7/12 max-w-[18rem] min-w-[12rem]'>
+			{false && <div className='w-7/12 max-w-[18rem] min-w-[12rem]'>
 				<Logo />
-			</div>
+			</div>}
 			</div>
 			<br />
 			<NewsletterForm msg={"SUBSCRIBE TO OUR NEWSLETTER AND GET 15% OFF YOUR ORDER"}/>

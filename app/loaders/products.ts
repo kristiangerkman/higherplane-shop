@@ -7,7 +7,7 @@ type _custom_field = {
 	value: string;
 }
 export type Variant = {
-	id: string;
+	id: string,
 	purchasing_disabled: boolean,
 	primary: boolean,
 	sku: string,
@@ -34,6 +34,7 @@ export type Product = {
 	promotion: string | null
     variants: Variant[];
 }
+
 
 const baseUrl = process.env.API_BASE_URL;
 

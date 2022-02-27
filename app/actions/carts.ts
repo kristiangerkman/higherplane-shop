@@ -14,6 +14,28 @@ export type Cart = {
 	tax_total: number,
 	cart_total: number,
 }
+
+type _custom_field = {
+	name: string;
+	value: string;
+}
+
+export type ItemFromCart = {
+	product_id: string,
+	variant_id: string,
+	tax_amount: number | null,
+	sku: string,
+	media: string[] | []
+	list_price: number | null,
+	description: string,
+	primary: boolean,
+	short_description: string,
+	name: string,
+	discount_amount: number | null,
+	custom_fields: _custom_field[],
+	quantity: number,
+}
+
 const _baseUrl = process.env.API_BASE_URL
 
 const _getCart = async (id: string) => {
