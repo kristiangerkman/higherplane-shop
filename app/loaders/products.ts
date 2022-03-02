@@ -40,8 +40,13 @@ const baseUrl = process.env.API_BASE_URL;
 
 export async function getAllProducts(): Promise<Product[]> {
 	const res = await axios.get(`${baseUrl}/products`);
+	let products:any = res.data;
+	if (products.length < 4 && process.env.NODE_ENV === "development") {
+		for (let i = res.data.length; i < 4; i++) {
+			products.push(res.data[0]);
+		}
+	}
 
-	const products = res.data;
 	return new Promise((resolve) => resolve(products));
 }
 

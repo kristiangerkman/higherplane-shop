@@ -32,9 +32,11 @@ export default function Index() {
     <div className="flex flex-col">
       <ScrollingImage images={data.images}/>
       <SpacedHeader text="WELCOME"></SpacedHeader>
-      <ProductRow products={data.products} label="MOST RECENT DROP" linkText="SHOW MORE" linkTo="/products?category=recent" max={4} />
-      <ProductRow products={data.products} label="GOOD VIBES ONLY" linkText="SHOW MORE" linkTo="/products?category=recent" max={4} />
+      <div className="pl-3 pr-3">
+        <ProductRow products={data.products} label="MOST RECENT DROP" linkText="SHOW MORE" linkTo="/products?category=recent" max={4} />
+        <ProductRow products={data.products} label="GOOD VIBES ONLY" linkText="SHOW MORE" linkTo="/products?category=recent" max={4} />
       <ToastContainer />
+      </div>
     </div>
   );
 }

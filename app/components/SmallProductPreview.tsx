@@ -9,7 +9,7 @@ export interface Props {
 export default function SmallProductPreview(props: Props) {
 	const { product } = props
 	return (
-		<div className="w-[9.375rem] h-[11.875rem] block mb-7 hover:underline">
+		<div className="w-[9.375rem] h-[11.875rem] block hover:underline">
 			<Link to={`/products/${product.id}`}>
 			<div className="w-[9.375rem] h-[9.375rem] overflow-hidden rounded-md bg-slate-500">
 				<img src={product?.variants[0]?.media[0]}></img>

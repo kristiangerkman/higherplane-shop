@@ -26,7 +26,7 @@ export type ItemFromCart = {
 	tax_amount: number | null,
 	sku: string,
 	media: string[] | []
-	list_price: number | null,
+	list_price: number,
 	description: string,
 	primary: boolean,
 	short_description: string,

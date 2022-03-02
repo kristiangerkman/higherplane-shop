@@ -15,9 +15,8 @@ export default function ProductRow(props: Props) {
 	const { products, label, linkTo, linkText, max } = props;
 	let productsToRender = [...products];
 	if (max) productsToRender.splice(max, productsToRender.length-max)
-
 	return (
-		<div className="pr-3 pl-3 flex flex-col">
+		<div className="flex flex-col">
 			{label && <h1 className="text-small font-bold mb-2">{label}</h1>}
 			<div className="flex flex-row justify-between flex-wrap">
 				{

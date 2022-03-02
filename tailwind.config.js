@@ -42,6 +42,9 @@ module.exports = {
         '20px',
         { letterSpacing: '0.25em' },
       ],
+      notsure: [
+        '20px',
+      ],
       spacedSmall: [
         '12px',
         { letterSpacing: '0.25em' },

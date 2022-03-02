@@ -40,9 +40,9 @@ export default function AllProducts() {
 		<Dropdown title="SIZE" setter={setTmp} initialValue={{ value: "L", label: 'L'}} values={[{ value: "L", label: 'L'}, { value: "M", label: 'M'}]} />
 		<Dropdown title="COLOR" setter={setTmp1} initialValue={{ value: "WHITE", label: 'WHITE'}} values={[{ value: "WHITE", label: 'WHITE'}, { value: "BLACK", label: 'BLACK'}]} />
 		<Button text="ADD TO CART" />
-		</div>
 
 		<ProductRow label="SUMMER VIBES" linkText="SHOW MORE" linkTo="/products" max={4} products={products}/>
+		</div>
     </div>
   );
 }
