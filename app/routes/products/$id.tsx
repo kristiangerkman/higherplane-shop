@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { json, Links, LoaderFunction, Meta, Scripts, useLoaderData, useParams } from "remix";
+import { Form, json, Links, LoaderFunction, Meta, Scripts, useLoaderData, useParams } from "remix";
 import Button from "~/components/Button";
 import InputField from "~/components/InputField";
 import ProductRow from "~/components/ProductRow";
@@ -22,24 +22,32 @@ export default function AllProducts() {
 	// I guess this should happen inside loader and then use the filtered data in this function
 	const data = useLoaderData<{product: Product, products: Product[]}>();
 	const { product, products } = data
-	console.log(tmp)
-	console.log(tmp1)
-	// check for params
-	// filters
 	const short_desc = product.short_description.split('\n');
 	// not like this
 	return (
     <div className="flex flex-col space-y-3">
-		<SpacedHeader text={product.name} />
 		<ProductScrollingImages images={product.variants[0].media} />
 		<div className="p-3" >
-		<ul className="list-disc pl-5">
-			{short_desc.map((c, i) => <li key={i} ><p className='text-small font-small break-words whitespace-pre-wrap' >{c}</p></li>)}
-		</ul>
-		<p className='text-small font-small underline'>${Number(product.base_price).toFixed(2)}</p>
-		<Dropdown title="SIZE" setter={setTmp} initialValue={{ value: "L", label: 'L'}} values={[{ value: "L", label: 'L'}, { value: "M", label: 'M'}]} />
-		<Dropdown title="COLOR" setter={setTmp1} initialValue={{ value: "WHITE", label: 'WHITE'}} values={[{ value: "WHITE", label: 'WHITE'}, { value: "BLACK", label: 'BLACK'}]} />
-		<Button text="ADD TO CART" />
+			<div className="mb-4">
+				<p className="text-spaced font-bold">{product.name}</p>
+				<p className='text-small font-small underline'>${Number(product.base_price).toFixed(2)}</p>
+			</div>
+			<div className="mb-3">
+				<Dropdown title="SIZE" setter={setTmp} initialValue={{ value: "L", label: 'L'}} values={[{ value: "L", label: 'L'}, { value: "M", label: 'M'}]} />
+			</div>
+			<div className="mb-3">
+				<Dropdown title="COLOR" setter={setTmp1} initialValue={{ value: "WHITE", label: 'WHITE'}} values={[{ value: "WHITE", label: 'WHITE'}, { value: "BLACK", label: 'BLACK'}]} />
+			</div>
+			<div className="mb-4">
+				<Form action="/cart">
+					<Button text="ADD TO CART" />
+				</Form>
+			</div>
+			<div className="mb-8">
+				<ul className="list-disc pl-5">
+					{short_desc.map((c, i) => <li key={i} ><p className='text-small font-small break-words whitespace-pre-wrap uppercase' >{c}</p></li>)}
+				</ul>
+			</div>
 
 		<ProductRow label="SUMMER VIBES" linkText="SHOW MORE" linkTo="/products" max={4} products={products}/>
 		</div>

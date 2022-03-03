@@ -98,7 +98,7 @@ const Dropdown = (props: Props) => {
   };
 
   return (
-    <div className='w-40'>
+    <div className='w-full'>
       <label className="text-pre font-bold">{title}</label>
       <div
         className="text-pre w-full text-primary bg-transparent border-2 rounded-md flex flex-col"

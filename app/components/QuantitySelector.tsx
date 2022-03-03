@@ -20,7 +20,7 @@ const QuantitySelector = (props: Props) => {
 	}
 
 	return (
-		<div className='w-40'>
+		<div className='w-full'>
 			{title && (<label className="text-pre font-bold">{title}</label>)}
 			<div
 			className="text-pre w-full text-primary h-[35px] bg-transparent border-2 rounded-md flex flex-col justify-center"

@@ -21,7 +21,7 @@ export interface Props {
         </div>
         </Link>
         <div className=" flex items-end">
-          <QuantitySelector initialValue={4} setter={() => console.log("set new quantity")} />
+          <QuantitySelector initialValue={item.quantity} setter={() => console.log("set new quantity")} />
           { /**TODO on quantity change change quantity handler */}
         </div>
       </div>

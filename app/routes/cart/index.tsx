@@ -6,7 +6,6 @@ import React from "react";
 import Button from "~/components/Button";
 import ProductRow from "~/components/ProductRow";
 import { getAllProducts } from "~/loaders/products";
-import Spacer from "~/components/Spacer";
 
 export const loader = async () => {
 	console.log('Load cart with all of it\'s products')
@@ -14,48 +13,40 @@ export const loader = async () => {
 
 	// get cart
 	// const products  = cart.items
-	const items = [
-		{
-			product_id: "2722e02d-3988-47aa-b47a-5eeb495s11ea4",
-			variant_id: "36b9b2cb-4f34-4139-80eb-ca91f9fssafee0",
-			name: "T-Shirt",
-			description: "Superb quality - 100% cotton (hand-picked in Etiopia",
-			short_description: "Superb quality",
-			purchasing_disabled: false,
-			primary: true,
-			sku: "asdasdasd",
-			media: [
-				"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2652-600x800.jpg",
-				"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2401-600x800.jpg",
-				"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2641-600x800.jpg"
-			],
-			custom_fields: [ ],
-			list_price: 14.95,
-			discount_amount: null,
-			tax_amount: null,
-			quantity: 1
-		},
-		{
-			product_id: "2722e02d-3988-47aa-b47a-5eeb49s511ea4",
-			variant_id: "36b9b2cb-4f34-4139-80eb-ca91fs9fafee0",
-			name: "T-Shirt",
-			description: "Superb quality - 100% cotton (hand-picked in Etiopia",
-			short_description: "Superb quality",
-			purchasing_disabled: false,
-			primary: true,
-			sku: "asdasdasd",
-			media: [
-				"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2401-600x800.jpg",
-				"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2641-600x800.jpg"
-			],
-			custom_fields: [ ],
-			list_price: 14.95,
-			discount_amount: null,
-			tax_amount: null,
-			quantity: 2
-		}
-	]
-	return { items, currency: 'EUR', products };
+	const cart = {
+		id: "d9b25ffd-f1a8-4a7d-b3f2-d1353c7e4a2a",
+		created_at: "2022-01-21T19:21:23.342Z",
+		updated_at: "2022-01-21T19:21:23.343Z",
+		email: null,
+		currency: "EUR",
+		items: [
+			{
+				product_id: "2722e02d-3988-47aa-b47a-5eeb49511ea4",
+				variant_id: "36b9b2cb-4f34-4139-80eb-ca91f9fafee0",
+				name: "T-Shirt",
+				description: "Superb quality - 100% cotton (hand-picked in Etiopia",
+				short_description: "Superb quality",
+				purchasing_disabled: false,
+				primary: true,
+				sku: "asdasdasd",
+				media: [
+					"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2652-600x800.jpg",
+					"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2401-600x800.jpg",
+					"https://higherplane-images.s3.eu-west-1.amazonaws.com/images/FD_Webshop_DSC_2641-600x800.jpg"
+				],
+				custom_fields: [ ],
+				list_price: 14.95,
+				discount_amount: null,
+				tax_amount: null,
+				quantity: 1
+			}
+		],
+		list_total: 14.95,
+		discount_total: 0,
+		tax_total: 0,
+		cart_total: 14.95
+	}
+	return { items: cart.items, currency: cart.currency, products };
 };
 		
 export default function Cart() {
@@ -78,7 +69,7 @@ return (
 			})
 		}
 		</div>
-		<Form className="mb-10">
+		<Form className="mb-10" action="/checkout">
 			<Button text="PROCEED TO CHECKOUT"/>
 		</Form>
 
