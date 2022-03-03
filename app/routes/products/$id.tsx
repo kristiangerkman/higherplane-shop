@@ -3,7 +3,7 @@ import { json, Links, LoaderFunction, Meta, Scripts, useLoaderData, useParams } 
 import Button from "~/components/Button";
 import InputField from "~/components/InputField";
 import ProductRow from "~/components/ProductRow";
-import ScrollingImages from "~/components/ScrollingImage";
+import ProductScrollingImages from "~/components/ProductScrollingImages";
 import SpacedHeader from "~/components/SpacedHeader";
 import { getAllProducts, Product } from "~/loaders/products";
 import Dropdown from "~/components/Dropdown";
@@ -31,7 +31,7 @@ export default function AllProducts() {
 	return (
     <div className="flex flex-col space-y-3">
 		<SpacedHeader text={product.name} />
-		<ScrollingImages images={product.variants[0].media} />
+		<ProductScrollingImages images={product.variants[0].media} />
 		<div className="p-3" >
 		<ul className="list-disc pl-5">
 			{short_desc.map((c, i) => <li key={i} ><p className='text-small font-small break-words whitespace-pre-wrap' >{c}</p></li>)}

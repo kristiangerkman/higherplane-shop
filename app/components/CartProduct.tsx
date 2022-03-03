@@ -14,7 +14,7 @@ export interface Props {
 	const { item, currency } = props
 	return (
 		<div className="w-[100%] flex flex-row h-[9.3rem] mb-4">
-			<div className="w-[6.3rem] mr-2">
+			<div className="w-[6.3rem] mr-2 flex flex-col justify-between">
         <Link to={`/products/${item.product_id}`}>
         <div className="w-[6.3rem] h-[6.3rem] overflow-hidden rounded-md bg-slate-500 mb-2">
           <img src={item?.media[0]}></img>
@@ -32,9 +32,12 @@ export interface Props {
 			      <p className="text-pre font-semiBold mb-1 text-left" >SIZE: MEDIUM</p>
 			      <p className="text-pre font-semiBold mb-1 text-left" >COLOR: WHITE</p>
           </div>
-          {item.quantity > 1 &&
+          {item.quantity > 1 ?
           (<div>
 			      <p className="text-pre font-semiBold text-left align-text-bottom" >{item.quantity} x {item.list_price} {currency}</p>
+          </div>) :
+          (<div>
+			      <p className="text-pre font-semiBold text-left align-text-bottom" >{item.list_price} {currency}</p>
           </div>)
           }
         </div>
