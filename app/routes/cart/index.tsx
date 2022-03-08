@@ -73,7 +73,7 @@ return (
 			<Button text="PROCEED TO CHECKOUT"/>
 		</Form>
 
-		<ProductRow label="RELATED ITEMS" linkText="SHOW MORE" linkTo="/products" max={4} products={products}/>
+		<ProductRow label="RELATED ITEMS" linkText="SHOW MORE" linkTo="/products" max={4}/>
 		</>
 	) : (
 		<div className="bg-slate-500 border-none rounded-md h-12 flex flex-col justify-center items-center">

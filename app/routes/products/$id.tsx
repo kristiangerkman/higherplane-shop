@@ -5,13 +5,52 @@ import InputField from "~/components/InputField";
 import ProductRow from "~/components/ProductRow";
 import ProductScrollingImages from "~/components/ProductScrollingImages";
 import SpacedHeader from "~/components/SpacedHeader";
-import { getAllProducts, Product } from "~/loaders/products";
+import { getAllProducts, getSingleProduct, Product, Variant } from "~/loaders/products";
 import Dropdown from "~/components/Dropdown";
 
-export const loader: LoaderFunction = async ({ params }) => {
-	const products = await getAllProducts();
+const mapVariants = (p:Product) => {
 
-	return {product: products.filter((p) => p.id === params.id)[0], products}
+	const variantMap:any = {};
+	const availableColors:any = {};
+	let primaryVariant:Variant | undefined;
+
+	p.variants.forEach((v) => {
+		let color = v.custom_fields.filter(c => c.name === "color")
+		let size = v.custom_fields.filter(c => c.name === "size")
+
+		if (color[0]?.value && size[0]?.value) {
+			if (!availableColors[color[0]?.value]) availableColors[color[0]?.value] = [];
+			availableColors[color[0]?.value].push(size[0]?.value);
+			
+			variantMap[`${color[0]?.value}_${size[0]?.value}`.toUpperCase()] = { id: v.id, primary: v.primary }
+			if(v.primary) primaryVariant = v;
+		}
+	})
+	return {variantMap, availableColors, primaryVariant};
+}
+
+export const loader: LoaderFunction = async ({ params, request }) => {
+	const product = await getSingleProduct(params.id);
+	const productsToUpsell = await getAllProducts(); // TODO: create new func that searches for certain tags
+		if (!product) {
+		throw new Response("Not found", {
+			status: 404,
+		});
+	}
+	const url = new URL(request.url);
+	const variantFromURL = url.searchParams.get('variant');
+
+	const {variantMap, availableColors, primaryVariant} = mapVariants(product);
+	console.log(variantMap)
+	
+	let initialVariant;
+	if (variantFromURL && variantMap[variantFromURL]) {
+		initialVariant = variantMap[variantFromURL]
+	} else {
+		initialVariant = primaryVariant;
+	}
+
+	return {product, products: productsToUpsell, variantMap, availableColors, initialVariant}
 
 };
 
@@ -49,7 +88,7 @@ export default function AllProducts() {
 				</ul>
 			</div>
 
-		<ProductRow label="SUMMER VIBES" linkText="SHOW MORE" linkTo="/products" max={4} products={products}/>
+		<ProductRow products={products} label="SUMMER VIBES" linkText="SHOW MORE" linkTo="/products" max={4}/>
 		</div>
     </div>
   );

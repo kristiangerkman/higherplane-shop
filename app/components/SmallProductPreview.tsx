@@ -10,7 +10,7 @@ export default function SmallProductPreview(props: Props) {
 	const { product } = props
 	return (
 		<div className="w-[9.375rem] h-[11.875rem] block hover:underline">
-			<Link to={`/products/${product.id}`}>
+			<Link to={`/products/${product.name.replaceAll(' ', '-').toLowerCase()}`}>
 			<div className="w-[9.375rem] h-[9.375rem] overflow-hidden rounded-md bg-slate-500">
 				<img src={product?.variants[0]?.media[0]}></img>
 			</div>

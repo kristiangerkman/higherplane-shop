@@ -24,7 +24,7 @@ export default function AllProducts() {
 		<Dropdown title="SIZE" setter={setTmp} initialValue={{ value: "L", label: 'L'}} values={[{ value: "L", label: 'L'}, { value: "M", label: 'M'}]} />
 		<br />
 
-		<ProductRow products={products}/>
+		<ProductRow products={products} />
     </div>
   );
 }
