@@ -27,22 +27,22 @@ export const loader: LoaderFunction = async () => {
 };
 
 export default function Index() {
-  const data = useLoaderData<{images: Image[], products: Product[]}>();
+  const data = useLoaderData<{ images: Image[], products: Product[] }>();
   const { images, products } = data;
   return (
     <div className="flex flex-col">
-      <ScrollingImage images={images}/>
+      <ScrollingImage images={images} />
       <SpacedHeader text="WELCOME"></SpacedHeader>
       <div className="pl-3 pr-3">
         <ProductRow products={products} label="MOST RECENT DROP" linkText="SHOW MORE" linkTo="/products?category=recent" max={4} />
         <ProductRow products={products} label="GOOD VIBES ONLY" linkText="SHOW MORE" linkTo="/products?category=recent" max={4} />
-      <ToastContainer />
+        <ToastContainer />
       </div>
     </div>
   );
 }
 
-export function ErrorBoundary({ error }:any) {
+export function ErrorBoundary({ error }: any) {
   console.error(error);
   return (
     <html>
