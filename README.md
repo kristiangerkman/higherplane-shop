@@ -11,6 +11,10 @@ USING TAILWIND FOR STYLES
 From your terminal:
 
 ```sh
+git clone https://github.com/kristiangerkman/higherplane-shop.git
+
+npm install
+
 npm run dev
 ```
 
